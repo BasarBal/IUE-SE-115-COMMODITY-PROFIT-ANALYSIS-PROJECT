@@ -7,9 +7,9 @@ public class Main {
     static final int DAYS = 28;
     static final int COMMS = 5;
     static String[] commodities = {"Gold", "Oil", "Silver", "Wheat", "Copper"};
-    static String[] months = {"January","February","March","April","May","June",
-            "July","August","September","October","November","December"};
+    static String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"}; 
 
+    static int[][][] infoData = new int[MONTHS][DAYS + 1][COMMS];
 
     // ======== REQUIRED METHOD LOAD DATA (Students fill this) ========
     public static void loadData() {
