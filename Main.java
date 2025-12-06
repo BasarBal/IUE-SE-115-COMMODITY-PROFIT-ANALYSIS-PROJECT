@@ -10,6 +10,15 @@ public class Main {
     static String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"}; 
 
     static int[][][] infoData = new int[MONTHS][DAYS + 1][COMMS];
+    // ======= CONVERTING COMMODITIES INTO NUMBERS =======
+    public static int commodityChange(String name){
+        for (int i = 0; i < COMMS; i++) {
+            if (commodities[i].equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     // ======== REQUIRED METHOD LOAD DATA (Students fill this) ========
     public static void loadData() {
