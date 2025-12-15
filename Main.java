@@ -25,7 +25,7 @@ public class Main {
     }
 
     // ======== 10 REQUIRED METHODS (Students fill these) ========
-
+// 1
     public static String mostProfitableCommodityInMonth(int month) {
         if (month < 0 || month >= MONTHS) {
             return "INVALID_MONTH";
@@ -48,7 +48,7 @@ public class Main {
         }
         return commodities[bestCommIndex] + " " + maxProfit;
     }
-
+// 2
     public static int totalProfitOnDay(int month, int day) {
         
         if (month < 0 || month >= MONTHS || day < 1 || day > DAYS) return -99999;
@@ -60,10 +60,10 @@ public class Main {
         }
         return total;
     }
-
-    public static int commodityProfitInRange(String commodity, int from, int to) { 
+// 3
+    public static int commodityProfitInRange(String commodity, int fromDay, int toDay) { 
         int commIndex = commodityChange(commodity);
-        if (commIndex == -1 || from > to || from < 1 || to > DAYS) {
+        if (commIndex == -1 || fromDay > toDay || fromDay < 1 || toDay > DAYS) {
             return -99999;
         }
 
@@ -71,13 +71,13 @@ public class Main {
 
         for (int m = 0; m < MONTHS; m++) {
 
-            for (int d = from; d <= to; d++) {
+            for (int d = fromDay; d <= toDay; d++) {
                 total += infoData[m][d][commIndex];
             }
         }
         return total;
     }
-
+// 4
     public static int bestDayOfMonth(int month) { 
         if (month < 0 || month >= MONTHS) {
             return -1;
@@ -100,27 +100,40 @@ public class Main {
         return bestDay;
         
     }
-
-    public static String bestMonthForCommodity(String comm) {
+// 5
+    public static String bestMonthForCommodity(String commodity) {
         return "DUMMY";
     }
-
-    public static int consecutiveLossDays(String comm) {
+// 6
+    public static int consecutiveLossDays(String commodity) {
         return 1234;
     }
+// 7
+    public static int daysAboveThreshold(String commodity, int threshold) { 
+        int commIndex = commodityChange(commodity);
+        if (commIndex == -1) {
+            return -1;
+        }
 
-    public static int daysAboveThreshold(String comm, int threshold) {
-        return 1234;
+        int count = 0;
+        for (int m = 0; m < MONTHS; m++) {
+            for (int d = 1; d <= DAYS; d++) {
+                if (infoData[m][d][commIndex] > threshold) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
-
+// 8
     public static int biggestDailySwing(int month) {
         return 1234;
     }
-
+// 9
     public static String compareTwoCommodities(String c1, String c2) {
         return "DUMMY is better by 1234";
     }
-
+// 10
     public static String bestWeekOfMonth(int month) {
         return "DUMMY";
     }
