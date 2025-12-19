@@ -89,7 +89,13 @@ public class Main {
     }
 
     public static int commodityProfitInRange(String commodity, int from, int to) {
-        int connIndex = getCommodityOfIndex(commodity);
+        int commIndex = -1;
+        for (int i = 0; i < COMMS; i++) {
+            if (commodities[i].equalsIgnoreCase(commodity)) {
+                commIndex = i;
+                break;
+            }
+        }
         if (connIndex == -1 || from < 1 || to > DAYS || from > to) {
             return -99999;
         }
@@ -125,7 +131,13 @@ public class Main {
     }
 
     public static String bestMonthForCommodity(String comm) {
-        int commIndex = getCommodityOfIndex(comm);
+        int commIndex = -1;
+        for (int i = 0; i < COMMS; i++) {
+            if (commodities[i].equalsIgnoreCase(comm)) {
+                commIndex = i;
+                break;
+            }
+        }
         if (commIndex == -1) {
             return "INVALID_COMMODITY";
         }
@@ -147,7 +159,13 @@ public class Main {
     }
 
     public static int consecutiveLossDays(String comm) {
-        int commIndex = getCommodityOfIndex(comm);
+        int commIndex = -1;
+        for (int i = 0; i < COMMS; i++) {
+            if (commodities[i].equalsIgnoreCase(comm)) {
+                commIndex = i;
+                break;
+            }
+        }
         if (commIndex == -1) {
             return -1;
         }
@@ -174,7 +192,13 @@ public class Main {
     }
 
     public static int daysAboveThreshold(String comm, int threshold) {
-        int commIndex = getCommodityOfIndex(comm);
+        int commIndex = -1;
+        for (int i = 0; i < COMMS; i++) {
+            if (commodities[i].equalsIgnoreCase(comm)) {
+                commIndex = i;
+                break;
+            }
+        }
         if (commIndex == -1) {
             return -1;
         }
@@ -210,8 +234,21 @@ public class Main {
     }
 
     public static String compareTwoCommodities(String c1, String c2) {
-        int index1 = getCommodityOfIndex(c1);
-        int index2 = getCommodityOfIndex(c2);
+        int index1 = -1;
+        for (int i = 0; i < COMMS; i++) {
+            if (commodities[i].equalsIgnoreCase(c1)) {
+                index1 = i;
+                break;
+            }
+        }
+
+        int index2 = -1;
+        for (int i = 0; i < COMMS; i++) {
+            if (commodities[i].equalsIgnoreCase(c2)) {
+                index2 = i;
+                break;
+            }
+        }
         if (index1 == -1 || index2 == -1) {
             return "INVALID_COMMODITY";
         }
