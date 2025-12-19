@@ -10,18 +10,48 @@ public class Main {
     static String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"}; 
 
     static int[][][] infoData = new int[MONTHS][DAYS + 1][COMMS];
-    // ======= CONVERTING COMMODITIES INTO NUMBERS =======
-    public static int getCommodityOfIndex(String name) {
-        for (int i = 0; i < COMMS; i++) {
-            if (commodities[i].equals(name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     // ======== REQUIRED METHOD LOAD DATA (Students fill this) ========
     public static void loadData() {
+        for (int monthIndex = 0; monthIndex < MONTHS; monthIndex++) {
+            String fileName = "Data_Files/" + months[monthIndex] + ".txt";
+            File dataFile = new File(fileName);
+
+            try (Scanner fileScanner = new Scanner(dataFile)) {
+                if (fileScanner.hasNextLine()) {
+                    fileScanner.nextLine();
+                }
+
+                while (fileScanner.hasNextLine()) {
+                    String line = fileScanner.nextLine();
+                    if (line.trim().isEmpty()) continue;
+                    String[] lineParts = line.split(",");
+
+                    if (lineParts.length == 3) {
+                        try {
+                            int dayNumber = Integer.parseInt(lineParts[0].trim());
+                            String commodityName = lineParts[1].trim();
+                            int profitValue = Integer.parseInt(lineParts[2].trim());
+
+                            int commodityIndex = -1;
+                            for (int i = 0; i < COMMS; i++) {
+                                if (commodities[i].equalsIgnoreCase(commodityName)) {
+                                    commodityIndex = i;
+                                    break;
+                                }
+                            }
+
+                            if (commodityIndex != -1 && dayNumber >= 1 && dayNumber <= DAYS) {
+                                profitMatrix[monthIndex][dayNumber][commodityIndex] = profitValue;
+                            }
+                        } catch (NumberFormatException e) {
+                            System.err.println("Hatalı veri formatı atlandı: " + line);
+                        }
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(months[monthIndex] + ".txt dosyası bulunamadı.");
+            }
+        }
     }
 
     // ======== 10 REQUIRED METHODS (Students fill these) ========
