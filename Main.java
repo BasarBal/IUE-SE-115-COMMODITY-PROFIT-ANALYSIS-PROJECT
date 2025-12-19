@@ -1,4 +1,3 @@
-// Main.java — Students version
 import java.io.*;
 import java.util.*;
 
@@ -9,7 +8,7 @@ public class Main {
     static String[] commodities = {"Gold", "Oil", "Silver", "Wheat", "Copper"};
     static String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"}; 
 
-    static int[][][] infoData = new int[MONTHS][DAYS + 1][COMMS];
+    static int[][][] profitMatrix = new int[MONTHS][DAYS + 1][COMMS];
     // ======== REQUIRED METHOD LOAD DATA (Students fill this) ========
     public static void loadData() {
         for (int monthIndex = 0; monthIndex < MONTHS; monthIndex++) {
@@ -44,12 +43,12 @@ public class Main {
                                 profitMatrix[monthIndex][dayNumber][commodityIndex] = profitValue;
                             }
                         } catch (NumberFormatException e) {
-                            System.err.println("Hatalı veri formatı atlandı: " + line);
+                            System.out.println("Incorrect data format skipped at line: " + line);
                         }
                     }
                 }
             } catch (FileNotFoundException e) {
-                System.out.println(months[monthIndex] + ".txt dosyası bulunamadı.");
+                System.out.println(months[monthIndex] + ".txt not found.");
             }
         }
     }
@@ -96,14 +95,14 @@ public class Main {
                 break;
             }
         }
-        if (connIndex == -1 || from < 1 || to > DAYS || from > to) {
+        if (commIndex == -1 || from < 1 || to > DAYS || from > to) {
             return -99999;
         }
 
         int total = 0;
         for (int m = 0; m < MONTHS; m++) {
             for (int d = from; d <= to; d++) {
-                total += profitMatrix[m][d][connIndex];
+                total += profitMatrix[m][d][commIndex];
             }
         }
         return total;
